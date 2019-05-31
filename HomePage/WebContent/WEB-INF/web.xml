@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>HomePage</display-name>
+  <welcome-file-list> 
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <session-config> 
+    <session-timeout>30</session-timeout> <!-- 30분 -->
+  </session-config> 
+   
+
+  <servlet><!-- 서블릿 이름과 서블릿 클래스 선언 --> 
+    <servlet-name>FileDownload</servlet-name> 
+    <servlet-class>utility.FileDownload</servlet-class> 
+  </servlet> 
+  <servlet-mapping><!-- URL상으로 접근해야하는 경로명 --> 
+    <servlet-name>FileDownload</servlet-name> <!-- 서블릿명 동일해야함 -->
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>   
+  
+  
+  <filter> <!-- 구현클래스 객체생성 -->
+  	<filter-name>AdminLoginCheckFilter</filter-name>
+  	<filter-class>utility.AdminLoginCheckFilter</filter-class>  
+  </filter>
+  <filter-mapping> <!-- 경로상의 모든 페이지에 대해서 filter 적용 -->
+  	<filter-name>AdminLoginCheckFilter</filter-name>
+  	<url-pattern>/admin/*</url-pattern> 
+  </filter-mapping>
+  
+</web-app>
